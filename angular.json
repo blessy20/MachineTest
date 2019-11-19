@@ -46,10 +46,11 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.scss","node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"]
           },
           "configurations": {
             "production": {

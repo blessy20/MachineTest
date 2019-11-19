@@ -1,0 +1,62 @@
+<!-- product-add.component.html -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+          <a href="list" class="nav-link" routerLinkActive="active">Asset List</a>
+      </li>
+      <li class="nav-item">
+          <a href="add" class="nav-link" routerLinkActive="active">Add Assets</a>  
+     </li>
+     <li class="nav-item">
+          
+        <button (click)=logout() type="submit" >LogOut</button>
+  </li>
+    </ul>
+  </nav>
+  <div class="card">
+          <div class="card-body">
+            <form [formGroup]="formAsset" novalidate (ngSubmit)="addAsset()">
+              <div class="form-group">
+               <label for="ad_name">AssetName:</label>
+                <input type="text" class="form-control" 
+                  formControlName="ad_name" 
+                  #ad_name />
+              </div>
+              <div *ngIf="formAsset.controls['ad_name'].invalid && (formAsset.controls['ad_name'].dirty || formAsset.controls['ad_name'].touched)" class="alert alert-danger">
+                <div *ngIf="formAsset.controls['ad_name'].errors.required">
+                  This field is required.
+                </div>
+              </div>
+              <div class="form-group">
+               <label for="ad_type">AssetType:</label>
+                <input type="number" class="form-control" 
+                formControlName="ad_type_id" 
+                #ad_type_id>
+              </div>
+              <div *ngIf="formAsset.controls['ad_type_id'].invalid && (formAsset.controls['ad_type_id'].dirty || formAsset.controls['ad_type_id'].touched)" class="alert alert-danger">
+                <div *ngIf="formAsset.controls['ad_type_id'].errors.required">
+                      This field is required.
+                </div>
+              </div>
+              <div class="form-group">
+                      <label for="ad_class">Asset Class:</label>
+                      <input type="text" class="form-control" 
+                        formControlName="ad_class" 
+                        #ad_class
+                      />
+                    </div>
+                    <div *ngIf="formAsset.controls['ad_class'].invalid && (formAsset.controls['ad_class'].dirty || formAsset.controls['ad_class'].touched)" class="alert alert-danger">
+                      <div *ngIf="formAsset.controls['ad_class'].errors.required">
+                              This field is required.
+                      </div>
+                    </div>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary"
+                  [disabled]="formProduct.pristine || formProduct.invalid" >
+                    Add Asset
+                  </button>
+              </div>
+            </form>
+          </div>
+        </div>

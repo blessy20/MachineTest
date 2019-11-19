@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+          <a href="list" class="nav-link" routerLinkActive="active">Asset List</a>
+      </li>
+      <li class="nav-item">
+          <a href="add" class="nav-link" routerLinkActive="active">Add Asset</a>
+         
+      </li>
+      <li class="nav-item">
+        
+          <button (click)=logout() type="submit" >LogOut</button>
+    </li>
+    </ul>
+  </nav>
+  <div>
+  <table class="table table-striped">
+    <thead>
+        <th>AssetID</th>
+        <th>Name</th>
+        <th>AssetType</th>
+        <th>Class</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+       <tr *ngFor="let ado of assetdef| async| paginate:{itemsPerPage:2,currentPage:p};let i=index">
+           <td>{{ado.ad_id}}</td>
+           <td>{{ado.ad_name}}</td>
+           <td>{{ado.ad_type_id}}</td>
+           <td>{{ado.ad_class}}</td>
+           <button class="btn btn-danger"  mwlConfirmationPopover
+           [popoverTitle]="popoverTitle"
+           [popoverMessage]="popoverMessage"
+           placement="left"
+           (confirm)="confirmClicked = true"
+           (cancel)="cancelClicked = true"
+           confirmButtonType="default"
+           (click)="confirmClicked=false;
+           cancelClicked=false"
+           [appendToBody]="true"
+           (confirm)=deleteAsset(ado.ad_id)>Delete</button>
+          </tr>
+    </tbody>
+</table>
+</div>
+<div>
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+</div>
