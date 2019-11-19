@@ -23,8 +23,8 @@ export class AssetService {
   {
     return this.http.post(environment.baseUrl+'/assetdef',assetdef);
   }
-  public deleteAsset(id:number)
+  public deleteAsset(ad_id:number)
   {
-   return this.http.delete(environment.baseUrl+'/assetdef' +id);
+   return this.http.delete(environment.baseUrl+'/assetdef' +ad_id);
   }
 }

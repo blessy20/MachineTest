@@ -24,9 +24,9 @@ list()
 {
   this.assetdef=this.service.getAssetList();
 }
-deleteAsset(id:number)
+deleteAsset(ad_id:number)
 {
-  this.service.deleteAsset(id).subscribe(data=>{
+  this.service.deleteAsset(ad_id).subscribe(data=>{
     console.log(data);
     this.toastr.info('product details deleted','Oops');
   })
