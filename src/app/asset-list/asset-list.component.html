@@ -25,10 +25,10 @@
     </thead>
     <tbody>
        <tr *ngFor="let ado of assetdef| async| paginate:{itemsPerPage:2,currentPage:p};let i=index">
-           <td>{{ado.ad_id}}</td>
-           <td>{{ado.ad_name}}</td>
-           <td>{{ado.ad_type_id}}</td>
-           <td>{{ado.ad_class}}</td>
+           <td>{{ado.assetId}}</td>
+           <td>{{ado.assetName}}</td>
+           <td>{{ado.assetType}}</td>
+           <td>{{ado.assetClass}}</td>
            <button class="btn btn-danger"  mwlConfirmationPopover
            [popoverTitle]="popoverTitle"
            [popoverMessage]="popoverMessage"
@@ -39,7 +39,7 @@
            (click)="confirmClicked=false;
            cancelClicked=false"
            [appendToBody]="true"
-           (confirm)=deleteAsset(ado.ad_id)>Delete</button>
+           (confirm)=deleteAsset(ado.assetId)>Delete</button>
           </tr>
     </tbody>
 </table>

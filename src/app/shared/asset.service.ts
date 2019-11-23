@@ -10,21 +10,27 @@ import { Assetdef } from './assetdef';
 export class AssetService {
 
   constructor(private http:HttpClient) { }
-  private baseUrl="http://localhost:51580/api";
+  private baseUrl="http://localhost:62800/api";
   public getAsset(id:number):Observable<any>
   {
-    return this.http.get(this.baseUrl+'/assetdef' +id);
+    return this.http.get(this.baseUrl+'/AssetDefinitions' +id);
   }
   public getAssetList():Observable<any>
   {
-    return this.http.get(this.baseUrl+'/assetdef');
+    return this.http.get(this.baseUrl+'/AssetDefinitions');
   }
   public addAsset(assetdef:Assetdef)
   {
-    return this.http.post(environment.baseUrl+'/assetdef',assetdef);
+    return this.http.post(environment.baseUrl+'/AssetDefinitions',assetdef);
   }
-  public deleteAsset(ad_id:number)
+  public deleteAsset(id: number)
   {
-   return this.http.delete(environment.baseUrl+'/assetdef' +ad_id);
+   return this.http.delete(environment.baseUrl+'/AssetDefinitions/' +id);
+  }
+  getAssettypeList(): Observable<any> {
+    return this.http.get(this.baseUrl+'/ AssetTypes');
+  }
+  getAssettype(id: number): Observable<any> {
+    return this.http.get(this.baseUrl + '/ AssetTypes/' + id);
   }
 }

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      Username: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
@@ -36,10 +36,11 @@ export class LoginComponent implements OnInit {
     }
     this.service.login(this.loginForm.value).subscribe(x => {
       x.forEach(element => {
-       console.log(element["l_id"])
-       localStorage.setItem('user',element["Username"]);
+       console.log(element["loginId"])
+       localStorage.setItem('user',element["username"]);
        
-        if (element["l_id"] == 1) {
+       console.log(element["loginId"])
+       if (element["loginId"] == 1) {
 
           this.router.navigateByUrl('/list');
         }

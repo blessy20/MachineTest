@@ -1,6 +1,6 @@
 export class Login {
-    l_id:number;
-    Username:string;
+    loginid:number;
+    username:string;
     password:string;
-    Usertype:string;
+    usertype:string;
 }

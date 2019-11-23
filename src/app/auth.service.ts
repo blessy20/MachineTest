@@ -10,10 +10,10 @@ import { Login } from './shared/login';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-  private baseUrl="http://localhost:51580/api";
+  private baseUrl="http://localhost:62800/api";
   public login(userInfo: Login): Observable<any> {
     localStorage.setItem('ACCESS_TOKEN', "acess_token")
-    return this.http.get(this.baseUrl +'/logintbls');
+    return this.http.get(this.baseUrl +'/Logins');
   }
   public isLoggedIn() {
     return localStorage.getItem('ACCESS_TOKEN') !== null;
