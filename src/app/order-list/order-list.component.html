@@ -1,0 +1,51 @@
+
+<nav>
+    <div class="panel-heading">
+    <h3 style="text-align: center;"><b> Purchase Status</b></h3>
+  </div>
+  <div class="panel panel-primary">
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark bg-dark">
+    <ul class="navbar-nav">
+      <li class="nav-item10">
+        <a href="masterorderlist" class="nav-link" routerLinkActive="active">Arrived Assets</a>
+      </li>
+      <li class="nav-item11">
+        <a href="masterlist" class="nav-link" routerLinkActive="active">Master List</a>
+    </li>
+    <li class="nav-item">
+        <a href="login" class="nav-link" routerLinkActive="active" (click)="Logout()">Logout</a>
+    </li>
+    </ul>
+  </nav>
+
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Order Number</th>
+          <th>AssetName</th>
+          <th>Asset Type</th>
+          <th>Vendor</th>
+          <th>Quantity</th>
+          <th>Purchase Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let purchase of purchases | async | paginate: {itemsPerPage:4,currentPage:p}; let i=index ">
+          <td>{{purchase.purchaseOrderNo}}</td>
+          <td>{{purchase.purchaseAssetNamestr}}</td>
+          <td>{{purchase.purchaseAssetTypestr}}</td>
+          <td>{{purchase.purchaseVendorNamestr}}</td>
+          <td>{{purchase.quantity}}</td>
+          <td>{{purchase.purchaseDelivDatestr}}</td>
+          <td><button [routerLink]="['/assetmaster',purchase.purchaseOrderNo]"  class="btn btn-info" style="margin-left: 10px"
+             routerLinkActive="active">Add Asset</button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      </div>
+      </div>
+      

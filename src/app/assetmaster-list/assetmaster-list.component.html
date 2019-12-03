@@ -1,0 +1,53 @@
+<div class="panel-heading">
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark bg-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item10">
+            <a href="masterorderlist" class="nav-link" routerLinkActive="active">Arrived Assets </a>
+        </li>
+        <li class="nav-item11">
+          <a href="masterlist" class="nav-link" routerLinkActive="active">Master List</a>
+      </li>
+      <li class="nav-item">
+        <a href="login" class="nav-link" routerLinkActive="active" (click)="Logout()">Logout</a>
+    </li>
+    </ul>
+  </nav>
+
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Asset Name</th>
+          <th>Asset Type</th>
+          <th>Vendor</th>
+          <th>Model Number</th>
+          <th>Serial Number</th>
+          <th>Manufacture Date</th>
+          <th>Purchase Date</th>
+          <th>Warranty From</th>
+          <th>Warranty To</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let master of masters | async | paginate: {itemsPerPage:4,currentPage:p}; let i=index ">
+          <td>{{master.assetMasterId }}</td>
+          <td>{{master.assetDefName }}</td>
+          <td>{{master.assetTypeName }}</td>
+          <td>{{master.makeName }}</td>
+          <td>{{master.model }}</td>
+          <td>{{master.serialnumber }}</td>
+          <td>{{master.makeYear }}</td>
+          <td>{{master.purchaseDate }}</td>
+          <td>{{master.warrantyFrom }}</td>
+          <td>{{master.warrantyTo}}</td>
+         
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <pagination-controls (pageChange)="p=$event"></pagination-controls>
+
+

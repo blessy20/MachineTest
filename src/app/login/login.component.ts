@@ -28,26 +28,35 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
   logins() {
-    console.log(this.loginForm.value);
-    this.isSubmitted = true;
+
     if (this.loginForm.invalid) {
-      this.toastr.warning("Invalid credentials");
+      this.toastr.warning("Enter Username and Password");
       return;
     }
-    this.service.login(this.loginForm.value).subscribe(x => {
-      x.forEach(element => {
-       console.log(element["loginId"])
-       localStorage.setItem('user',element["username"]);
+    this.isSubmitted = true;
+    this.service.login(this.loginForm.value).subscribe(element => {
        
-       console.log(element["loginId"])
-       if (element["loginId"] == 1) {
-
-          this.router.navigateByUrl('/list');
+      if(element!=null)
+      {
+        if (element["usertype"] == 'Admin') {
+          localStorage.setItem('ACCESS_TOKEN', element["username"]);
+          this.router.navigateByUrl('/admin');
+          this.toastr.success('Welcome Admin','Asset Management System');
         }
-       else{
-        this.toastr.warning("Invalid Username and Password");
-       }
+        else if (element["usertype"] == 'PurchaseManager') {
+          localStorage.setItem('ACCESS_TOKEN', element["username"]);
+          this.toastr.success("Welcome Purchase Manager");
+          this.router.navigateByUrl('/purchase');
+
+        }
+      }
+      else{
+        this.toastr.error("Invalid username and password");
+      }
+     
       });
-    })
+    
+  }
 }
-}
+
+

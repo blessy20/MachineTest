@@ -11,13 +11,35 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AdminComponent } from './admin/admin.component';
+import { PurchaseComponent } from './purchase/purchase.component';
+import { VendorAddComponent } from './vendor/vendor-add/vendor-add.component';
+import { VendorListComponent } from './vendor/vendor-list/vendor-list.component';
+import { VendorEditComponent } from './vendor/vendor-edit/vendor-edit.component';
+import { PurchaseOrderComponent } from './purchase/purchase-order/purchase-order.component';
+import { PurchaseListComponent } from './purchase/purchase-list/purchase-list.component';
+import { PurchaseEditComponent } from './purchase/purchase-edit/purchase-edit.component';
+import { AssetmasterAddComponent } from './assetmaster-add/assetmaster-add.component';
+import { AssetmasterListComponent } from './assetmaster-list/assetmaster-list.component';
+import { OrderListComponent } from './order-list/order-list.component';
 @NgModule({
   declarations: [
     AppComponent,
     AssetAddComponent,
     AssetListComponent,
     LoginComponent,
-    AssetEditComponent
+    AssetEditComponent,
+    AdminComponent,
+    PurchaseComponent,
+    VendorAddComponent,
+    VendorListComponent,
+    VendorEditComponent,
+    PurchaseOrderComponent,
+    PurchaseListComponent,
+    PurchaseEditComponent,
+    AssetmasterAddComponent,
+    AssetmasterListComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,

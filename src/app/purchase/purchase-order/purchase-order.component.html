@@ -1,0 +1,62 @@
+<!-- purchase-order.component.html -->
+<form [formGroup]="formPurchase" (ngSubmit)="placeOrder()">
+  <div class="form-group">
+      <label for="purchaseOrderNo">Order No </label>
+      <input type="text " class="form-control" formControlName="purchaseOrderNo" readonly="true" style="width:500px;">
+
+  </div>
+
+  <div class="form-group">
+      <label class="col-md-4">Asset Name</label>
+      <input type="text" placeholder="Enter AssetName" [(ngModel)]="searchstring" formControlName="purchaseAssetName"
+      class="form-control" style="width:500px;"><button type="button" value="search" (click)="searchAsset(searchstring)">Search
+      </button>
+  </div>
+
+  <!--div *ngIf="purchaseForm.controls['pd_orderno'].invalid && (purchaseForm.controls['pd_orderno'].dirty || purchaseForm.controls['pd_orderno'].touched)" class="alert alert-danger">
+        <div *ngIf="purchaseForm.controls['pd_orderno'].errors.required">
+          Asset Name is required.
+        </div> 
+      </div-->
+
+  <div [ngClass]="form-group">
+      <label class="col-md-4">Asset Type</label>
+      <select class="form-control" id="purchaseAssetType" name="purchaseAssetType" #mySelect
+          (change)='onOptionsSelected(mySelect.value)' formControlName="purchaseAssetType" style="width:500px;">
+          <option value="">Choose Asset Type</option>
+          <option *ngFor="let asset of assettype | async" value="{{asset.assetTypeId}}">{{asset.assetTypeName}}</option>
+      </select>
+  </div>
+  <br>
+
+  <div [ngClass]="form-group">
+      <label class="col-md-4">Quantity</label>
+      <input type="text" placeholder="Enter Quantity" class="form-control" formControlName="quantity" style="width:500px;"/>
+  </div>
+  <br>
+
+  <div [ngClass]="form-group">
+      <label class="col-md-4">Vendor Name</label>
+      <select class="form-control" id="purchaseVendorName" name="purchaseVendorName" formControlName="purchaseVendorName" style="width:500px;">
+          <option value="">Choose Vendor Type</option>
+          <option *ngFor="let vendor of vendors | async" value="{{vendor.vendorId}}">{{vendor.vendorName}}</option>
+      </select>
+  </div>
+  <!--div [ngClass]="form-group">
+      <label class="col-md-4" for="Date">Order Date</label>
+       <input type="text" date='yyyy-MM-dd'  class="form-control" [(ngModel)]="purchase.purchaseDate" formControlName="purchaseDate" >
+  </div-->
+ 
+  <!--div [ngClass]="form-group">
+      <label class="col-md-4" for="Date">Delivery Date</label>
+      <input type="date" class="form-control" formControlName="purchaseDelivDateStr" disabled="disabled">
+  </div-->
+  <br>
+ 
+  <br>
+
+  <button type="submit" class="btn btn-dark"
+      [disabled]="formPurchase.pristine || formPurchase.invalid">Place Order</button>
+
+</form>
+

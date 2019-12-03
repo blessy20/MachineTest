@@ -12,8 +12,8 @@ export class AuthService {
   constructor(private http: HttpClient) { }
   private baseUrl="http://localhost:62800/api";
   public login(userInfo: Login): Observable<any> {
-    localStorage.setItem('ACCESS_TOKEN', "acess_token")
-    return this.http.get(this.baseUrl +'/Logins');
+   
+    return this.http.get(this.baseUrl +'/Logins?username='+userInfo.username+'&password='+userInfo.password);
   }
   public isLoggedIn() {
     return localStorage.getItem('ACCESS_TOKEN') !== null;

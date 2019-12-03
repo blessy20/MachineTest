@@ -1,0 +1,59 @@
+<div class="topnav">
+    <div style="text-align: center">
+        <h4><b><u>PURCHASE LIST</u></b></h4>
+    </div>
+    <div class="topnav-right">
+        <button class="btn btn-outline-primary my-2 my-sm-0" style="margin-left:20px" (click)=logout() type="submit">LogOut</button>
+    </div>
+    <div class="topnav-right">
+    <button [routerLink]="['/placeorder']" class="btn btn-outline-info my-2 my-sm-0">Place Order</button>
+    </div>
+    
+</div>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th>PurchaseID</th>
+            <th>OrderNumber</th>
+            <th>Asset Name</th>
+            <th>Asset Type</th>
+            <th>Quantity</th>
+            <th>Vendor Name</th>
+            <th>Order Date</th>
+            <th>Delivery Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pobj of purchase| async| paginate:{itemsPerPage:2,currentPage:p};let i=index">
+                <td>{{pobj.purchaseId}}</td>
+                <td>{{pobj.purchaseOrderNo}}</td>
+                <td>{{pobj.purchaseAssetNamestr}}</td>
+                <td>{{pobj.purchaseAssetTypestr}}</td>
+                <td>{{pobj.quantity}}</td>
+                <td>{{pobj.purchaseVendorNamestr}}</td>
+                <td>{{pobj.purchaseDatestr}}</td>
+                <td>{{pobj.purchaseDelivDatestr}}</td>
+                <td>{{pobj.purchaseStatus}}</td>
+               
+            <button [routerLink]="['/purchaseupdate',pobj.purchaseId]" 
+            class="btn btn-outline-success my-2 my-sm-0" [disabled]="pobj.purchaseStatus!='PO-Raised with Supplier'">UpdateOrder</button>
+            <button class="btn btn-danger my-2 my-sm-0"  mwlConfirmationPopover
+           [popoverTitle]="popoverTitle"
+           [popoverMessage]="popoverMessage"
+           placement="left"
+           (confirm)="confirmClicked = true"
+           (cancel)="cancelClicked = true"
+           confirmButtonType="default"
+           (click)="confirmClicked=false;
+           cancelClicked=false"
+           [appendToBody]="true"
+           (confirm)=deleteOrder(pobj.purchaseId) [disabled]="pobj.purchaseStatus=='Asset Details Registered Internally'">CancelOrder</button>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div style="text-align:center">
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+</div>

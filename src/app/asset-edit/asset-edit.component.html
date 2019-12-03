@@ -1,1 +1,80 @@
-<p>asset-edit works!</p>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a href="list" class="nav-link" routerLinkActive="active">Asset List</a>
+    </li>
+    <li class="nav-item">
+      <a href="add" class="nav-link" routerLinkActive="active">Add Asset</a>
+    </li>
+  </ul>
+</nav>
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="formAsset" novalidate (ngSubmit)="updateAsset()">
+      <div class="form-group">
+        <input type="hidden" class="form-control" formControlName="assetId" #assetId [(ngModel)]="assetdef.assetId" />
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Asset Name</label>
+        <input type="text" class="form-control" value="{{ assetdef.assetName }}" formControlName="assetName" #assetName
+          [(ngModel)]="assetdef.assetName" />
+      </div>
+      <div *ngIf="
+        formAsset.controls['assetName'].invalid &&
+          (formAsset.controls['assetName'].dirty ||
+          formAsset.controls['assetName'].touched)
+        " class="alert alert-danger">
+        <div *ngIf="formAsset.controls['assetName'].errors.required">
+          asset name is required.
+        </div>
+      </div>
+      <div [ngClass]="form - group">
+        <label class="col-md-4">Asset Type</label>
+
+        <select class="form-control" id="assetType" [(ngModel)]="assetdef.assetType" name="assetType"
+          formControlName="assetType">
+          <option value="">Choose Asset Type</option>
+          <option *ngFor="let assettype of assettypes | async" value="{{ assettype.assetTypeId }}">
+            {{ assettype.assetTypeName }}</option>
+        </select>
+      </div>
+
+      <div *ngIf="
+        formAsset.controls['assetType'].invalid &&
+          (formAsset.controls['assetType'].dirty ||
+          formAsset.controls['assetType'].touched)
+        " class="alert alert-danger">
+        <div *ngIf="formAsset.controls['assetType'].errors.required">
+          Asset Type is required.
+        </div>
+      </div>
+
+      <br />
+
+      <div [ngClass]="form - group">
+        <label class="col-md-4">Asset Class</label>
+        <select class="form-control" formControlName="assetClass" [(ngModel)]="assetdef.assetClass">
+          <option value="">Select Asset Class</option>
+          <option value="HW">Hardware</option>
+          <option value="SW">Software</option>
+        </select>
+
+        <div *ngIf="
+          formAsset.controls['assetClass'].invalid &&
+            (formAsset.controls['assetClass'].dirty ||
+            formAsset.controls['assetClass'].touched)
+          " class="alert alert-danger">
+          <div *ngIf="formAsset.controls['assetClass'].errors.required">
+            Asset Class is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="formAsset.pristine || formAsset.invalid">
+          Edit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

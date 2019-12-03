@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Links -->
+        <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="admin" class="nav-link" routerLinkActive="active">Home</a>
+         </li>
+          <li class="nav-item">
+              <a href="vendorlist" class="nav-link" routerLinkActive="active">Vendor List</a>
+          </li>
+          <li class="nav-item">
+              <a href="vendoradd" class="nav-link" routerLinkActive="active">Add Vendor</a>
+             
+          </li>
+          <li class="nav-link">
+                <button (click)=logout() type="submit" >LogOut</button>
+               </li>
+        </ul>
+      </nav>
+    
+      
+      <div>
+      <table class="table table-striped">
+            <div>
+                <input type="text" placeholder="Search Vendor" [(ngModel)]="SearchString" (ngModelChange)="search(SearchString)">
+            </div>
+        <thead>
+            <th>VendorID</th>
+            <th>VendorName</th>
+            <th>VendorType</th>
+            <th>Asset Type</th>
+            <th>Valid From</th>
+            <th>Valid To</th>
+            <th>Address</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+           <tr *ngFor="let vdo of vendor| async| paginate:{itemsPerPage:4,currentPage:p};let i=index">
+               <td>{{vdo.vendorId}}</td>
+               <td>{{vdo.vendorName}}</td>
+               <td>{{vdo.vendorType}}</td>
+               <td>{{vdo.vendorAssetType}}</td>
+               <td>{{vdo.validFromstr}}</td>
+               <td>{{vdo.vaildTostr}}</td>
+               <td>{{vdo.vendorAddress}}</td>
+               <button [routerLink]="['/vendorupdate',vdo.vendorId]" class="btn btn-success">Edit</button>
+               <button class="btn btn-danger" style="margin-left:20px" mwlConfirmationPopover
+               [popoverTitle]="popoverTitle"
+               [popoverMessage]="popoverMessage"
+               placement="left"
+               (confirm)="confirmClicked = true"
+               (cancel)="cancelClicked = true"
+               confirmButtonType="default"
+               (click)="confirmClicked=false;
+               cancelClicked=false"
+               [appendToBody]="true"
+               (confirm)=deleteVendor(vdo.vendorId)>Delete</button>
+              </tr>
+        </tbody>
+    </table>
+    </div>
+    <div style="text-align:center">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>

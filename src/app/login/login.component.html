@@ -1,27 +1,14 @@
-
-  <div class="login">
-    <h3 class="login-header">LOGIN</h3>
-    <form [formGroup]="loginForm" class="login-container" (ngSubmit)="logins()">
-  
-      <p [ngClass]="{ 'has-error': isSubmitted && formControls.username.errors }">
-        <input type="text" placeholder="username" formControlName="username">
-      </p>
-  
-      <div *ngIf="isSubmitted && formControls.username.errors" class="help-block">
-        <div *ngIf="formControls.username.errors.required">The field is required</div>
-      </div>
-  
-      <p [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
-        <!--input type="password" placeholder="Password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$"-->
-        <input type="password" placeholder="Password" formControlName="password">
-      </p>
-  
-      <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
-        <div *ngIf="formControls.password.errors.required">The field is required</div>
-      </div>
-  
-      <p>
-        <input type="submit" value="LOGIN">
-      </p>
-    </form>
-  </div>
+<div class="login">
+  <h3 class="login-header">LOGIN</h3>
+  <form [formGroup]="loginForm" class="login-container" (ngSubmit)="logins()">
+    <div [ngClass]="{ 'has-error': isSubmitted && formControls.username.errors }">
+      <input type="text" placeholder="username" formControlName="username">
+    </div>
+    <div [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+      <input type="password" placeholder="Password" formControlName="password">
+    </div>
+    <div>
+      <input type="submit" value="Sign in">
+    </div>
+  </form>
+</div>

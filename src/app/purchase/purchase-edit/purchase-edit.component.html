@@ -1,0 +1,55 @@
+<form [formGroup]="formPurchase" novalidate (ngSubmit)="updateOrder()">
+    <div [ngClass]="form-group">
+      <input type="hidden" class="form-control" formControlName="purchaseId" #purchaseId value="{{purchase.purchaseId}}" [(ngModel)]="purchase.purchaseId"/>
+      </div>
+    <div [ngClass]="form-group">
+      <label class="col-md-4">Order Number</label>
+      <input type="text" class="form-control" formControlName="purchaseOrderNo"  readonly="true"  value="{{purchase.purchaseOrderNo}}" [(ngModel)]="purchase.purchaseOrderNo" #purchaseOrderNo />
+    </div>
+
+    <div [ngClass]="form-group">
+          <label class="col-md-4">Asset Name</label>
+       <input type="text" class="form-control" readonly="true" [(ngModel)]="purchase.purchaseAssetName" value="{{purchase.purchaseAssetNamestr}}"
+         formControlName="purchaseAssetNamestr" 
+         #purchaseAssetName />
+    </div>
+    <div [ngClass]="form-group">
+    <label class="col-md-4">Asset Type</label>
+    <input type="text" class="form-control" readonly="true" [(ngModel)]="purchase.purchaseAssetType" value="{{purchase.purchaseAssetTypestr}}"
+    formControlName="purchaseAssetTypestr" 
+    #purchaseAssetType />
+    </div>
+
+  <div [ngClass]="form-group">
+    <label class="col-md-4">Quantity</label>
+    <input type="text" class="form-control" readonly="true" [(ngModel)]="purchase.quantity" value="{{purchase.quantity}}"
+    formControlName="quantity" 
+    #quantity />
+     </div>
+   <div [ngClass]="form-group">
+        <label class="col-md-4">Vendor Name</label>
+        <input type="text" class="form-control" readonly="true" [(ngModel)]="purchase.purchaseVendorName" value="{{purchase.purchaseVendorNamestr}}"
+        formControlName="purchaseVendorNamestr" 
+        #purchaseVendorName />
+    </div>
+    <div [ngClass]="form-group">
+        <label class="col-md-4">Order Date </label>
+        <input type="date" class="form-control" readonly="true" [(ngModel)]="purchase.purchaseDatestr" value="{{purchase.purchaseDatestr}}"
+        formControlName="purchaseDatestr" 
+        #purchaseDatestr />
+    </div>
+     <div [ngClass]="form-group">
+          <label class="col-md-4">Delivery Date</label>
+       <input type="date" class="form-control" [(ngModel)]="purchase.purchaseDelivDate" value="{{purchase.purchaseDelivDatestr}}"
+         formControlName="purchaseDelivDatestr" 
+         #purchaseDelivDatestr/>
+     </div>
+   
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-success"
+        [disabled]="formPurchase.pristine || formPurchase.invalid" >
+         Update order
+        </button>
+    </div>
+  </form>
